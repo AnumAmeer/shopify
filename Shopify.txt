@@ -1,0 +1,303 @@
+
+<----------------Edit Subcriber button------------text color,border color and background color------------(assets) theme.scss.liquid---------------->
+
+			.input-group__field,
+			.input-group__btn .btn {
+  			height: $input-group-height-small;
+  			padding-top: 0;
+  			padding-bottom: 0;
+  			color:white;
+  			border-color:green;
+  			background-color:green;
+
+ 			@include media-query($medium-up) {
+   			height: $input-group-height;
+  			}
+			}
+
+			.input-group__field {
+  			width: 99%;
+  			border-right: 1;
+  			border-radius: $border-radius 0 0 $border-radius;
+  			background-color:white;
+
+  			.form-vertical & {
+   			 margin: 0;
+ 			 }
+			}
+
+	.input-group__btn {
+ 	 white-space: nowrap;
+ 	 width: 1%;
+
+  	.btn {
+    	border-radius: 0 $border-radius $border-radius 0;
+    	white-space: nowrap;
+  	}
+	}
+
+
+<------------------Edit pagination link button----------------(assets) theme.scss.liquid---------------------->
+.btn--narrow {
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color:lightblue;
+  color: white;
+  font-size: 3em;
+  border-top-left-radius:5px;
+  border-top-right-radius:5px;
+ 
+}
+
+
+
+<----------------------------------------This code is use for back to the top ----------------create new file in the snippet and name it back to the top---------------------------->
+
+
+{% comment %} 
+  Reduce below value if you need the back to the top button to appear higher up on the page. 
+  That value is in pixels.
+{% endcomment %}
+{% assign vertical_offset_for_trigger = 300 %}
+{% comment %} 
+  Vertical offset from bottom of browser for the position of the button.
+{% endcomment %}
+{% assign position_from_bottom = '4em' %}
+<a href="#" title="Back to the top" class="back-to-top">
+  <span>Back to the top</span> <i class="fa fa-arrow-circle-o-up fa-2x"></i> 
+</a>
+{{ '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css' | stylesheet_tag }}
+<style>
+.back-to-top {
+  position: fixed;
+  bottom: {{ position_from_bottom }};
+  right: 0px;
+  text-decoration: none;
+  color: #999;
+  background-color: #eee;
+  font-size: 16px;
+  padding: 0.3em;
+  display: none;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  z-index: 60000;
+}
+.back-to-top i {
+  vertical-align: middle;
+}
+.back-to-top span {
+  padding-left: 0.5em;
+}
+.back-to-top i + span {
+  padding-left: 0;
+}
+.back-to-top:hover {
+  text-decoration: none;
+  color: #555;
+}
+</style>
+<script>
+window.onload = function() {
+ jQuery(function($) {
+   var offset = {{ vertical_offset_for_trigger }};
+   var duration = 500;
+   $(window).scroll(function() {
+     if ($(this).scrollTop() > offset) {
+       $('.back-to-top').fadeIn(duration);
+     } 
+     else {
+       $('.back-to-top').fadeOut(duration);
+     }
+   });
+   $('.back-to-top').unbind('click.smoothscroll').bind('click', function(e) {
+     e.preventDefault();
+     $('html, body').animate( { scrollTop: 0 }, duration);
+     return false;
+   })
+ });
+}
+</script>
+
+
+
+<---------------------------------------------------Include your snippet for display button-----------------(folder layout>>>>filename=theme.liquid)------------------------------>
+
+In the Layouts folder, open the theme.liquid file.
+
+Scroll to the bottom of the file. Right above the closing </body> tag, paste this code:
+
+
+{% include 'back-to-the-top' %}
+
+
+
+<--------------------------/*================ Slide Images width and height change ================*/----------------------------------------------->
+
+.slideshow__image {
+  transition: $transition-image-slideshow;
+  position: absolute;
+  top: 0;
+
+  left: 5%;
+
+  opacity: 0;
+
+  height: 90%;					
+  width: 90%;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+  z-index: $z-index-slideshow-image;
+  
+
+  .slick-initialized &,
+  .no-js & {
+    opacity: 1;
+  }
+
+
+
+<-------------------------------/*================ Add to Cart Buttons ================*/------------------------------------->
+
+.btn {
+  @include user-select();
+  @include prefix(appearance, none, webkit moz spec);
+  display: inline-block;
+  width: auto;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: $border-radius;
+  padding: $input-padding-top-bottom-small $input-padding-left-right-small;
+  background-color: $color-btn-primary;
+  color: $color-btn-primary-text;
+  font-family: $font-stack-header;
+  font-weight: $font-weight-header;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: normal;
+  font-size: $font-size-base - 2;
+
+  @include media-query($medium-up) {
+    padding: $input-padding-top-bottom $input-padding-left-right;
+  }
+
+  &:hover,
+  &:focus {
+    opacity: $opacity-link-hover;
+  }
+
+
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+.product-form__cart-submit {
+  display: block;
+  width: 100%;
+  line-height: 1.4;
+  padding-left: 5px;
+  padding-right: 5px;
+  white-space: normal;
+  color:white;
+  background-color:green;
+}
+
+<------------- For dispaly star rating on collection products-------------Snippets/product-cart-grid.liquid--------------------------- >
+
+		<span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+
+
+<----------------------- For dispaly star rating on sepecific products--------------Section/product-template.liquid---------find description and paste code----------------- >
+
+		<div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+
+
+<-------------------------------------------------------------change color of compare product price-------------------------------------------------------------------------->
+
+.product-price__sale,
+.product__price--sale {
+  color: $color-sale-text;
+  color:red;
+}
+
+
+<---------------------------------------------------------change color 0f product price ----------------------------------------------------------->
+
+.product-price__price {
+  display: inline-block;
+  color: $color-body-text;
+  color:green;
+  font-size:16px;
+ 
+}
+
+
+<---------------------------------Add breadcumb----------Create new snippets and paste below code in the newly created snippet----------------->
+
+{% unless template == 'index' or template == 'cart' or template == 'list-collections' %}
+<nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
+  <a href="/" title="Home">Home</a>
+  {% if template contains 'page' %}
+    <span aria-hidden="true">&rsaquo;</span>
+    <span>{{ page.title }}</span>
+  {% elsif template contains 'product' %}
+    {% if collection.url %}
+      <span aria-hidden="true">&rsaquo;</span>
+      {{ collection.title | link_to: collection.url }}
+    {% endif %}
+    <span aria-hidden="true">&rsaquo;</span>
+    <span>{{ product.title }}</span>
+  {% elsif template contains 'collection' and collection.handle %}
+    <span aria-hidden="true">&rsaquo;</span>
+    {% if current_tags %}
+      {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+      {{ collection.title | link_to: url }}
+      <span aria-hidden="true">&rsaquo;</span>
+      <span>{{ current_tags | join: " + " }}</span>
+    {% else %}
+      <span>{{ collection.title }}</span>
+    {% endif %}
+  {% elsif template == 'blog' %}
+    <span aria-hidden="true">&rsaquo;</span>
+    {% if current_tags %}
+      {{ blog.title | link_to: blog.url }}
+      <span aria-hidden="true">&rsaquo;</span>
+      <span>{{ current_tags | join: " + " }}</span>
+    {% else %}
+    <span>{{ blog.title }}</span>
+    {% endif %}
+  {% elsif template == 'article' %}
+    <span aria-hidden="true">&rsaquo;</span>
+    {{ blog.title | link_to: blog.url }}
+    <span aria-hidden="true">&rsaquo;</span>
+    <span>{{ article.title }}</span>
+  {% else %}
+   <span aria-hidden="true">&rsaquo;</span>
+   <span>{{ page_title }}</span>
+  {% endif %}
+</nav>
+{% endunless %}
+
+
+<--------------------------------------------------open theme.liquid and paste shown below code where to display breadcumb----------------------->
+
+{% include 'breadcrumbs' %}
+
+
+
+<------------------------maun menu color change--------------------------------->
+
+.site-nav--active
+.site-nav--link{color:red;}
+.site-nav__link{ display:block;
+		 white-space:nowrap;
+		 color:green; }
+
+
